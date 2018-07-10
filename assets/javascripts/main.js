@@ -11,10 +11,10 @@
     startAtt: function() {
       attitude.FoundationAtt();
       attitude.AosAtt();
-      attitude.StickyHeaderAtt();
       attitude.OpacityFadeAtt();
-      attitude.OwlCarouselAtt();
+      // attitude.OwlCarouselAtt();
       attitude.SliderEnrichedAtt();
+      attitude.submitFormAtt();
     },
 
     /* ===== Init Foundatio Site ===== */
@@ -22,28 +22,78 @@
       jQuery(document).foundation();
     },
 
+    submitFormAtt: function() {
+      var abide = document.getElementById('prompt');
+      var sendForm = document.getElementById("submitForm");
+      // chaining of listeners
+      $(document)
+        // .on("forminvalid.zf.abide", function(ev, frm) {
+        //   console.log("Form id " + ev.target.id + " is invalid");
+        // })
+        // .on("formvalid.zf.abide", function(ev, frm) {
+        //   console.log("Form id " + frm.attr("id") + " is valid");
+        //   // ajax post form
+        // })
+        .on("submit", function(ev) {
+          ev.preventDefault();
+          console.log(ev.target.id + " Prevented Reload");
+          abide.innerHTML = "Your Message has been sent, We will get back to you soon!"
+          abide.style.display = "block";
+          var elements = document.getElementsByClassName("formVal");
+          var formData = new FormData();
+
+          for (var i = 0; i < elements.length; i++) {
+            formData.append(elements[i].name, elements[i].value);
+          }
+          // creates new XMLHttpRequest Object
+          var xmlHttp = new XMLHttpRequest();
+          // checks if xml request is successfull.
+          xmlHttp.addEventListener('load', function () {
+            if (xmlHttp.status == 200) {
+              console.log("Sent!");
+            }
+            else{
+              abide.innerHTML = "We tried to send a message but failed please try again?"
+              console.log("failed");
+            }
+          });
+          xmlHttp.open("post", "form.php");
+          xmlHttp.send(formData);
+        });
+    },
+    /*     submitFormAtt: function() {
+      var abide = document.getElementById('prompt');
+      var sendForm = document.getElementById("submitForm");
+      sendForm.addEventListener("click", submitForm);
+      function submitForm(e) {
+        var elements = document.getElementsByClassName("formVal");
+        var formData = new FormData();
+        for (var i = 0; i < elements.length; i++) {
+          formData.append(elements[i].name, elements[i].value);
+        }
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.addEventListener('load', function() {
+            if (xmlHttp.status == 200 && elements[0].value !== '') {
+              console.log("Sent!");
+              abide.innerHTML = "Your Message has been sent, We will get back to you soon!"
+              abide.style.display = "block";
+            }
+            else {
+              $('#inquiryForm').foundation('addErrorClasses', $el);
+              abide.innerHTML = "There are some problems with your details"
+              abide.style.display = "block";
+            }
+          });
+        e.preventDefault();
+        xmlHttp.open("post", "form.php");
+        xmlHttp.send(formData);
+      }
+    }, */
     AosAtt: function() {
       AOS.init({
         offset: 50,
         duration: 600,
         easing: "ease-in-sine"
-      });
-      console.log("aos init!");
-    },
-
-    /* ===== Sticky Header ===== */
-    StickyHeaderAtt: function() {
-      $(".sticky-header").headroom({
-        tolerance: 15,
-        offset: 50,
-        tolerance: 5,
-        classes: {
-          initial: "animated",
-          pinned: "slideDown",
-          notTop: "gradient-a-80",
-          unpinned: "slideUp",
-          top: "headroom--top"
-        }
       });
     },
 
@@ -51,7 +101,7 @@
     OpacityFadeAtt: function() {
       var fadeStart = 10,
         fadeEnd = 600,
-        fade = $(".heading");
+        fade = $(".slide-content");
       $(window).on("scroll", function() {
         var offset = $(document).scrollTop(),
           opacity = 0;
@@ -61,112 +111,6 @@
           opacity = 1 - offset / fadeEnd;
         }
         fade.css("opacity", opacity);
-      });
-    },
-
-    /* ===== Owl Carousel Settings ===== */
-    OwlCarouselAtt: function() {
-      /* ===== Owl carousel TEAM Section ===== */
-      $(".owl-carousel-team").owlCarousel({
-        loop: true,
-        margin: 40,
-        responsive: {
-          0: {
-            items: 1
-          },
-          640: {
-            items: 2
-          },
-          1024: {
-            items: 4
-          }
-        }
-      });
-
-      /* ===== Owl carousel Post Section ===== */
-      $(".owl-carousel-post").owlCarousel({
-        loop: true,
-        margin: 5,
-        responsive: {
-          0: {
-            items: 1
-          },
-          640: {
-            items: 2
-          },
-          1024: {
-            items: 3
-          }
-        }
-      });
-
-      /* ===== Owl carousel Projects Section ===== */
-      $(".owl-carousel-projects").owlCarousel({
-        loop: true,
-        margin: 30,
-        responsive: {
-          0: {
-            items: 1
-          },
-          640: {
-            items: 2
-          },
-          1024: {
-            items: 3
-          }
-        }
-      });
-
-      /* ===== Owl carousel Sponsor Section ===== */
-      $(".owl-carousel-sponsor").owlCarousel({
-        loop: true,
-        margin: 5,
-        responsive: {
-          0: {
-            items: 2
-          },
-          400: {
-            items: 3
-          },
-          640: {
-            items: 5
-          },
-          1024: {
-            items: 6
-          }
-        }
-      });
-
-      /* ===== Owl carousel Testimonials Section ===== */
-      $(".owl-carousel-testimonials").owlCarousel({
-        loop: true,
-        margin: 0,
-        responsive: {
-          0: {
-            items: 1
-          },
-          640: {
-            items: 2
-          }
-        }
-      });
-
-      /* ===== Owl carousel Slider Teaser ===== */
-      $(".slider-intro .slides").owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayHoverPause: true,
-        autoplayTimeout: 5000,
-        smartSpeed: 500,
-        nav: true,
-        lazyLoad: true,
-        navContainer: ".slider-intro .slider-actions",
-        navText: [
-          '<i class="fa fa-chevron-left"></i>',
-          '<i class="fa fa-chevron-right"></i>'
-        ],
-        items: 1,
-        margin: 0
       });
     },
 

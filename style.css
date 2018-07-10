@@ -257,6 +257,72 @@ p {
   font-family: "Playfair Display", serif;
   color: white; }
 
+/*
+    Flaticon icon font: Flaticon
+    Creation date: 10/07/2018 13:21
+    */
+@font-face {
+  font-family: "Flaticon";
+  src: url("assets/font/Flaticon.eot");
+  src: url("assets/font/Flaticon.eot?#iefix") format("embedded-opentype"), url("assets/font/Flaticon.woff") format("woff"), url("assets/font/Flaticon.ttf") format("truetype"), url("assets/font/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("assets/font/Flaticon.svg#Flaticon") format("svg"); } }
+
+.fi:before {
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
+
+.flaticon-golf:before {
+  content: "\f100"; }
+
+.flaticon-plane:before {
+  content: "\f101"; }
+
+.flaticon-hotel-with-three-floors:before {
+  content: "\f102"; }
+
+.flaticon-landscape:before {
+  content: "\f103"; }
+
+.flaticon-medical-kit:before {
+  content: "\f104"; }
+
+.flaticon-shopping-bag:before {
+  content: "\f105"; }
+
+.flaticon-exercise:before {
+  content: "\f106"; }
+
+.flaticon-beverage:before {
+  content: "\f107"; }
+
+.flaticon-drinks:before {
+  content: "\f108"; }
+
+.flaticon-minibar:before {
+  content: "\f109"; }
+
+.flaticon-restaurant:before {
+  content: "\f10a"; }
+
+.flaticon-swimming-pool:before {
+  content: "\f10b"; }
+
 /* ==========================================================================
 /* ===== Toolbar  ===== */
 /*========================================================================== */
@@ -299,8 +365,6 @@ section.teaser {
   position: relative;
   height: 109vh;
   min-height: 600px;
-  background-size: cover;
-  background-position: center;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -311,8 +375,13 @@ section.teaser {
           flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  padding: 80px 10px 0 10px;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative; }
+  @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    .home-page-hero {
+      background-position: center; } }
   .home-page-hero::after {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 100 65' fill='rgb(240,244,247)' fill-opacity='1'%3E%3Cpolygon points='0,65 100,65 100,0'%3E%3C/polygon%3E%3C/svg%3E");
     background-position: center center;
@@ -326,20 +395,11 @@ section.teaser {
     width: 100%;
     z-index: 1;
     bottom: 0; }
-  .home-page-hero .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; }
+  @media screen and (max-width: 39.9375em) {
+    .home-page-hero .logo-card {
+      display: none; } }
   .home-page-hero h1 {
     font-size: 2rem; }
-  .home-page-hero .heading.twentyfiveHeight {
-    padding-top: 20vh; }
-  .home-page-hero .heading.fiftyHeight {
-    padding-top: 35vh; }
-  .home-page-hero .heading.seventyfiveHeight {
-    padding-top: 55vh; }
   .home-page-hero .heading h1 {
     font-size: 3.75rem;
     font-weight: 700; }
@@ -410,38 +470,18 @@ section.teaser {
     padding: 0px; }
   .slider-intro .slide-alt {
     position: relative;
-    /*min-height: 80vh; */ }
-    .slider-intro .slide-alt.fiftyHeight {
-      padding-top: 50vh; }
-    .slider-intro .slide-alt.seventyfiveHeight {
-      padding-top: 75vh; }
-    .slider-intro .slide-alt.fullHeight {
-      padding-top: 100vh; }
+    min-height: 109vh; }
     .slider-intro .slide-alt .slide-image {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%; }
-      .slider-intro .slide-alt .slide-image .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        -webkit-transition: .5s ease;
-        transition: .5s ease;
-        z-index: 0; }
     .slider-intro .slide-alt .slide-content {
       position: absolute;
       left: 0;
-      top: 20%;
+      top: 5%;
       width: 100%; }
-      .slider-intro .slide-alt .slide-content {
-        -webkit-transform: translateY(-80%);
-                transform: translateY(-80%); }
       .slider-intro .slide-alt .slide-content .slide-content-inner {
         max-width: 600px;
         padding: 40px;
@@ -621,13 +661,10 @@ article.single-post-article {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex; }
-      .place-list ul li object {
-        width: 24px;
-        top: .4rem;
-        vertical-align: top;
-        height: 24px;
-        margin-right: 15px;
-        position: relative; }
+      .place-list ul li i {
+        padding-right: 15px;
+        font-size: 1.5rem;
+        color: #7DD2F7; }
       .place-list ul li .distance {
         text-align: right;
         margin-left: auto;
@@ -637,7 +674,7 @@ article.single-post-article {
   padding: 30px; }
   @media screen and (min-width: 40em) {
     .float-box {
-      padding: 40px 90px; } }
+      padding: 40px 60px; } }
   .float-box p {
     margin: 1.2rem 0; }
   .float-box.show-unit {
@@ -723,9 +760,9 @@ section {
     @media screen and (min-width: 40em) {
       .section-pool section.lifestyle {
         padding-top: 60px; } }
-    .section-pool section.lifestyle object {
-      width: 64px;
-      margin: 6px; }
+    .section-pool section.lifestyle i {
+      font-size: 3.8rem;
+      margin-right: 15px; }
 
 section.contact {
   background-size: cover;
@@ -755,8 +792,7 @@ section.welcome {
     margin: 1rem; }
     @media screen and (min-width: 40em) {
       section.welcome .section-body h4 {
-        margin: 1rem;
-        font-size: 1.3rem; } }
+        margin: 1rem; } }
 
 /* ==========================================================================
 /* ===== Book Appointment Section ===== */
@@ -1328,7 +1364,7 @@ input[type='checkbox'] {
       color: #0C3F7B; }
 
 [type=checkbox] + label[for] {
-  max-width: 90%;
+  max-width: 82%;
   vertical-align: top; }
 
 /* ==========================================================================
